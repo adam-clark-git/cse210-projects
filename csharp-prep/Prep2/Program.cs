@@ -20,7 +20,7 @@ class Program
         {
             signResult = "-";
         }
-        
+
 
         if (num >= 90)
         {
@@ -50,5 +50,13 @@ class Program
             result = $" F";
         }
         Console.WriteLine($"You got a{result}.");
+        if (num >= 70)
+        {
+            Console.WriteLine("You Passed!");
+        }
+        else
+        {
+            Console.WriteLine("Better Luck Next Time. :(");
+        }
     }
 }
