@@ -17,6 +17,19 @@
         },
 
         {
+            "name": "sandbox2 Project",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-sandbox2",
+            "program": "${workspaceFolder}/sandbox2/bin/Debug/net8.0/sandbox2.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/sandbox2",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+
+        {
             "name": "C# Prep 1",
             "type": "coreclr",
             "request": "launch",
