@@ -10,7 +10,7 @@ class Program
         List<int> numList;
         numList = new List<int>();
 
-        for (int i = 0; i < 1000; i++)
+        while (1 != 0)
         {
             Console.Write("Enter Number:");
             input = int.Parse(Console.ReadLine());
