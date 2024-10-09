@@ -4,7 +4,6 @@ using System.IO;
 class Journal
 {
     List<Entry> allEntries = new List<Entry>();
-    String newEntryKey = "$%$";
     public Journal()
     {
 
