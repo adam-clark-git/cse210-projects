@@ -3,7 +3,7 @@ using System.IO;
 
 class Journal
 {
-    List<Entry> allEntries = new List<Entry>();
+    List<Entry> _AllEntries = new List<Entry>();
     public Journal()
     {
 
@@ -13,9 +13,24 @@ class Journal
         Console.WriteLine("Name of File to Load from: ");
         String fileName = Console.ReadLine();
         String[] lines = System.IO.File.ReadAllLines(fileName);
+        Entry tempEntry = new Entry();
+        bool oddLine = true;
         foreach (String line in lines)
         {
-            allEntries.Add(new Entry(line));
+            // Yeah this just dp
+            if (oddLine)
+            {
+                tempEntry.addJournalInput(line);
+                oddLine = false;
+            }
+            else
+            {
+                tempEntry.addJournalInput("\n" + line);
+                _AllEntries.Add(tempEntry);
+                tempEntry = new Entry();
+                oddLine = true;
+            }
+            
         }
         
 
@@ -26,17 +41,17 @@ class Journal
         String fileName = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            foreach (Entry baseEntry in allEntries)
+            foreach (Entry baseEntry in _AllEntries)
             {
                 Console.WriteLine("Saving Line");
-                outputFile.WriteLine(baseEntry.journalInput);
+                outputFile.WriteLine(baseEntry._JournalInput);
             }
         }
 
     }
     public void displayEntries()
     {
-        foreach (Entry journalEntry in allEntries)
+        foreach (Entry journalEntry in _AllEntries)
         {
             journalEntry.display();
         }
@@ -44,11 +59,11 @@ class Journal
     public void setEntry()
     {
         Entry newEntry = new Entry();
-        String combinedInput = newEntry.getDate() + " ";
-        combinedInput += newEntry.getPrompt() + " ";
+        String combinedInput = newEntry.getDate() + " - ";
+        combinedInput += "Prompt: " + newEntry.getPrompt() + " \n";
         combinedInput += newEntry.userInput() + " ";
 
-        newEntry.setJournalInput(combinedInput);
-        allEntries.Add(newEntry);
+        newEntry.addJournalInput(combinedInput);
+        _AllEntries.Add(newEntry);
     }
 }
