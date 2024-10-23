@@ -8,7 +8,7 @@ class Program
         myScripture.StoreScripture();
         string exit = "";
         bool allHidden = false;
-        while (!exit.Equals("quit") && !allHidden)
+        while (!exit.Equals("exit") && !allHidden)
         {
             myScripture.DisplayVerse();
             Console.WriteLine("type \"exit\" to quit");
