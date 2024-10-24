@@ -1,13 +1,13 @@
 class Reference
 {
-    String _ScriptureReference;
+    String _scriptureReference;
     public Reference(string scriptureReference)
     {
-        _ScriptureReference = scriptureReference;
+        _scriptureReference = scriptureReference;
     }
     public void DisplayReference()
     {
-        Console.WriteLine(_ScriptureReference);
+        Console.WriteLine(_scriptureReference);
     }
 
 

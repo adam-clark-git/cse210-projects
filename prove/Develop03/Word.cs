@@ -1,25 +1,25 @@
 
 class Word 
 {
-    private string _Word;
+    private string _word;
     private string BLANK = "_";
     public Word(string word)
     {
-        _Word = word;
+        _word = word;
     }
     public void SetBlank()
     {
-        int wordLength = _Word.Length;
-        _Word = "";
+        int wordLength = _word.Length;
+        _word = "";
         for (int i = 0; i < wordLength; i++)
         {
-            _Word += BLANK;
+            _word += BLANK;
         }
         
     }
     public bool CheckBlank()
     {
-        if (_Word.Contains('_'))
+        if (_word.Contains('_'))
         {
             return true;
         }
@@ -27,7 +27,7 @@ class Word
     }
     public void DisplayWord()
     {
-        Console.Write(_Word + " ");
+        Console.Write(_word + " ");
     }
 
 }
