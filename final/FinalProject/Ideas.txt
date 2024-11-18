@@ -1,0 +1,2 @@
+Write a chess program.
+Needs to use 8 classes.
