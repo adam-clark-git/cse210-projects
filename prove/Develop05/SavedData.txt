@@ -1,0 +1,5 @@
+1620
+Negative Goal:*Don't swear*I'm trying not to swear*100*False
+Simple Goal:*Learn Spanish*learn the language*500*True
+Eternal Goal:*Read the scriptures*read em*20*False
+Checklist Goal:*Read 3 times*Read a book 3 times*200*True*800*3*3

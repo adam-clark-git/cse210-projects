@@ -7,11 +7,15 @@ class Goal
     protected int _rewardPoints;
     protected string _goalType;
     protected bool _completion;
-    protected string KEY = "*";
+    protected static string KEY = "*";
     public Goal(string textLine)
     {
         SetGoalType();
-
+        String[] valueList = textLine.Split(KEY);
+        _name = valueList[1];
+        _description = valueList[2];
+        _rewardPoints = int.Parse(valueList[3]);
+        _completion = bool.Parse(valueList[4]);
     }
     public Goal() {
         SetUserGoal();
@@ -52,5 +56,8 @@ class Goal
         }
         Console.Write(" [" + completionIcon + "] " + _name + " (" + _description + ")");
     }
-
+    public static String GetKey()
+    {
+        return KEY;
+    }
 }

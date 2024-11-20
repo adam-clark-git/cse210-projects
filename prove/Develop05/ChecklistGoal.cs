@@ -3,6 +3,17 @@ class ChecklistGoal : Goal
     private int _bonusPoints;
     private int _timesCompleted;
     private int _timesNeededToComplete;
+    public ChecklistGoal(string textLine) : base(textLine)
+    {
+        String[] valueList = textLine.Split(KEY);
+        _bonusPoints = int.Parse(valueList[5]);
+        _timesCompleted = int.Parse(valueList[6]);
+        _timesNeededToComplete = int.Parse(valueList[7]);
+    }
+    public ChecklistGoal() : base()
+    {
+        
+    }
     public override int ProgressEvent()
     {
         if (_completion)

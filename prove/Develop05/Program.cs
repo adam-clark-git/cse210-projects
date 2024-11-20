@@ -12,7 +12,8 @@ class Program
     {
         GoalManager manager = new GoalManager();
         while (true)
-        {   
+        {
+            manager.DisplayPoints();   
             DisplayOptions();
             int userChoice = int.Parse(Console.ReadLine());
             
