@@ -1,2 +1,32 @@
 Write a chess program.
 Needs to use 8 classes.
+Levels of funcitonality
+1: Create a board of pieces and display them
+2: Allow user to select a piece, and then show all viable moves
+3: Allow user to pick a move and then execute it
+4: Include niche moves like castling and en passant
+5: Keep track of points for each side
+6: Determine check and checkmate
+7: Determine stalemate and other conditions
+8: Show captured pieces
+9. AI
+Blank piece
+King
+Queen
+Pawn
+Bishop
+Rook
+Knight
+Chessboard
+
+Stretch:
+Implement a timer
+Implement a chess clock
+One: Base piece class
+int points
+String name
+String color
+int xPos
+int yPos
+Method checkMovement()
+Method replacePiece()
