@@ -55,8 +55,6 @@ class ChessBoard
         _board[7][5] = new Bishop(7,5, "black", hasNotMoved);
         _board[7][6] = new Knight(7, 6, "black", hasNotMoved);
         _board[7][7] = new Rook(7,7, "black", hasNotMoved);
-
-        _board[7][0] = new Pawn(7,0, "white", hasNotMoved, false);
         
     }
 
@@ -217,17 +215,18 @@ class ChessBoard
         {
             if (_board[row][x].GetName().Equals("pawn"))
             {
-                Console.WriteLine("What would you like to promote to?");
+                Console.WriteLine("What would you like to promote to? Type the name of the piece you wish to promote to.");
                 String userChoice = Console.ReadLine();
-                if (userChoice.Equals("Bishop"))
+                userChoice = userChoice.ToLower();
+                if (userChoice.Equals("bishop"))
                 {
                     _board[row][x] = new Bishop(row, x, color, true);
                 }
-                else if (userChoice.Equals("Rook"))
+                else if (userChoice.Equals("rook"))
                 {
                     _board[row][x] = new Rook(row, x, color, true);
                 }
-                else if (userChoice.Equals("Knight"))
+                else if (userChoice.Equals("knight"))
                 {
                     _board[row][x] = new Knight(row, x, color, true);
                 }
@@ -238,16 +237,7 @@ class ChessBoard
             }
         }
     }
-    public void DeHighlightBoard()
-    {
-        for (int yList = 0; yList < 8; yList++)
-        {
-            for (int xList = 0; xList < 8; xList++)
-            {
-                _board[yList][xList].DeHighlightPiece();
-            }
-        }
-    }
+    
     public bool CheckSingleMove(int yPick, int xPick, bool userIsWhite)
     {
         // Users will input a possible move for that piece
@@ -308,23 +298,7 @@ class ChessBoard
         return false;
     }
     
-    public bool CheckEnPassant(int yPick, int xPick, bool userIsWhite)
-    {
-        return _board[yPick][xPick].GetEnPassantStatus();
-    }
-    public void RemoveEnPassant(bool userIsWhite)
-    {
-        for (int y = 0; y < 8; y++)
-        {
-            for (int x = 0; x < 8; x++)
-            {
-                if (_board[y][x].GetName() == "pawn" && _board[y][x].IsSameColor(userIsWhite))
-                {
-                    _board[y][x].ResetToNeutral();
-                }
-            }
-        }
-    }
+    
     public bool GetOwnCheckStatus(bool userIsWhite)
     {
         for (int y = 0; y < 8; y++)
@@ -395,36 +369,7 @@ class ChessBoard
         return fixedValidMoves;
     }
 
-    public Piece AddPiece(int yPos, int xPos, bool hasMoved, string color, string name, bool enPassantStatus)
-    {
-        Piece piece = new Piece(yPos,xPos);
-        if (name.Equals("king"))
-        {
-            piece = new King(yPos, xPos, color, hasMoved);
-        }
-        else if (name.Equals("queen"))
-        {
-            piece = new Queen(yPos, xPos, color, hasMoved);
-        }
-        else if (name.Equals("bishop"))
-        {
-            piece = new Bishop(yPos, xPos, color, hasMoved);
-        }
-        else if (name.Equals("knight"))
-        {
-            piece = new Knight(yPos, xPos, color, hasMoved);
-        }
-        else if (name.Equals("rook"))
-        {
-            piece = new Rook(yPos, xPos, color, hasMoved);
-        }
-        else if (name.Equals("pawn"))
-        {
-            piece = new Pawn(yPos, xPos, color, hasMoved, enPassantStatus);
-        }
-        
-        return piece;
-    }
+    
     public ChessBoard GetFutureBoard()
     {
         List<List<Piece>> newBoard = new List<List<Piece>>();
@@ -441,33 +386,8 @@ class ChessBoard
         ChessBoard futureBoard =  new ChessBoard(newBoard);
         return futureBoard;
     }
-    public bool InitialMoveInvalid(int yPick, int xPick, bool userIsWhite)
-    {
-        return !_board[yPick][xPick].IsSameColor(userIsWhite);
-    }
-    public int HighlightValidMoves(List<Piece> validMoves)
-    {
-
-        int moveCount = 0;
-        foreach (Piece piece in validMoves)
-        {
-            piece.HighlightPiece();
-            moveCount++;
-        }
-        return moveCount;
-    }
-    public bool CanCastleThrough(int yPick, int xPick)
-    {
-        if (_board[yPick][xPick].IsHighlighted())
-        {
-            return false;
-        }
-        if (!_board[yPick][xPick].GetName().Equals("blank"))
-        {
-            return false;
-        }
-        return true;
-    }
+    
+    
     public List<int> SecondUserSelection(int moveCount)
     {
         List<int> cords = new List<int>();
@@ -521,5 +441,77 @@ class ChessBoard
             }
         }
         return false;
+    }
+    public Piece AddPiece(int yPos, int xPos, bool hasMoved, string color, string name, bool enPassantStatus)
+    {
+        Piece piece = new Piece(yPos,xPos);
+        if (name.Equals("king"))
+        {
+            piece = new King(yPos, xPos, color, hasMoved);
+        }
+        else if (name.Equals("queen"))
+        {
+            piece = new Queen(yPos, xPos, color, hasMoved);
+        }
+        else if (name.Equals("bishop"))
+        {
+            piece = new Bishop(yPos, xPos, color, hasMoved);
+        }
+        else if (name.Equals("knight"))
+        {
+            piece = new Knight(yPos, xPos, color, hasMoved);
+        }
+        else if (name.Equals("rook"))
+        {
+            piece = new Rook(yPos, xPos, color, hasMoved);
+        }
+        else if (name.Equals("pawn"))
+        {
+            piece = new Pawn(yPos, xPos, color, hasMoved, enPassantStatus);
+        }
+        
+        return piece;
+    }
+    public bool InitialMoveInvalid(int yPick, int xPick, bool userIsWhite)
+    {
+        return !_board[yPick][xPick].IsSameColor(userIsWhite);
+    }
+    public int HighlightValidMoves(List<Piece> validMoves)
+    {
+
+        int moveCount = 0;
+        foreach (Piece piece in validMoves)
+        {
+            piece.HighlightPiece();
+            moveCount++;
+        }
+        return moveCount;
+    }
+    public void DeHighlightBoard()
+    {
+        for (int yList = 0; yList < 8; yList++)
+        {
+            for (int xList = 0; xList < 8; xList++)
+            {
+                _board[yList][xList].DeHighlightPiece();
+            }
+        }
+    }
+    public bool CheckEnPassant(int yPick, int xPick, bool userIsWhite)
+    {
+        return _board[yPick][xPick].GetEnPassantStatus();
+    }
+    public void RemoveEnPassant(bool userIsWhite)
+    {
+        for (int y = 0; y < 8; y++)
+        {
+            for (int x = 0; x < 8; x++)
+            {
+                if (_board[y][x].GetName() == "pawn" && _board[y][x].IsSameColor(userIsWhite))
+                {
+                    _board[y][x].ResetToNeutral();
+                }
+            }
+        }
     }
 }

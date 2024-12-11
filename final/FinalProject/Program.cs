@@ -7,6 +7,7 @@ class Program
         Console.WriteLine("Welcome to Chess!");
         Console.WriteLine("Type 'commands' to see a list of commands");
         Console.WriteLine("Would you like to play against an AI or a human player?");
+        Console.WriteLine("AI currently does not function");
         String userChoice = Console.ReadLine();
         if (userChoice.Equals("AI"))
         {
@@ -173,6 +174,7 @@ class Program
                 }
                 Console.WriteLine("What piece would you like to move?");
                 string playerMove = Console.ReadLine();
+                playerMove = playerMove.ToLower();
                 int yPlayerMove = 1;
                 int xPlayerMove = 1;
                 if (playerMove.Equals("points"))
@@ -191,9 +193,9 @@ class Program
                     Thread.Sleep(2000);
                     Console.WriteLine("Pieces are selected from the x axis first, then the y axis.");
                     Thread.Sleep(2000);
-                    Console.WriteLine("Castling and En Passant are special");
+                    Console.WriteLine("Castling, En Passant and Promoting are all included.");
                     Thread.Sleep(2000);
-                    Console.WriteLine("quit and points are also commands");
+                    Console.WriteLine("Quit and Points are also commands");
                     Thread.Sleep(2000);
                 }
                 if (playerMove.Split(" ").Length < 2)
