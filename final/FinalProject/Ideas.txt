@@ -22,11 +22,4 @@ Chessboard
 Stretch:
 Implement a timer
 Implement a chess clock
-One: Base piece class
-int points
-String name
-String color
-int xPos
-int yPos
-Method checkMovement()
-Method replacePiece()
+

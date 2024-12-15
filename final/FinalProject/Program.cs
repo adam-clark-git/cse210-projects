@@ -7,7 +7,7 @@ class Program
         Console.WriteLine("Welcome to Chess!");
         Console.WriteLine("Type 'commands' to see a list of commands");
         Console.WriteLine("Would you like to play against an AI or a human player?");
-        Console.WriteLine("AI currently does not function");
+        Console.WriteLine("type 'AI' to play against an AI.");
         String userChoice = Console.ReadLine();
         if (userChoice.Equals("AI"))
         {
@@ -216,6 +216,11 @@ class Program
                     Console.WriteLine("Stalemate.");
                     return;
                 }
+                while (!chessBoard.RandAI(userIsWhite))
+                {
+                    
+                }
+                
             }
             userIsWhite = !userIsWhite;
         }

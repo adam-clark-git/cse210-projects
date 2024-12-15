@@ -135,8 +135,6 @@ class ChessBoard
 
 
 
-
-
     public void ExecuteMove(bool userIsWhite, int yPick, int xPick, int yPlayerMove, int xPlayerMove)
     {
         if (_board[yPick][xPick].GetName() == "pawn" && _board[yPlayerMove][xPlayerMove].GetEnPassantStatus())
@@ -513,5 +511,43 @@ class ChessBoard
                 }
             }
         }
+    }
+
+
+    // AI ZONE
+    public List<Piece> FindPiecesToMove(bool userIsWhite)
+    {
+        List<Piece> allPieces = new List<Piece>();
+        for (int y = 0; y < 8; y++)
+        {
+            for (int x = 0; x < 8; x++)
+            {
+                if (_board[y][x].IsSameColor(userIsWhite))
+                {
+                    allPieces.Add(_board[y][x]);
+                }
+                
+            }
+        }
+        return allPieces;
+    }
+    public bool RandAI(bool userIsWhite)
+    {
+        RemoveEnPassant(userIsWhite);
+        List<Piece> yourPieces = FindPiecesToMove(userIsWhite);
+        Random randMove = new Random();
+        int pickedPiece = (int) randMove.Next(yourPieces.Count());
+        Piece aiChoice = yourPieces[pickedPiece];
+        List<Piece> fixedValidMoves = GetValidMoves(userIsWhite, aiChoice.GetY(), aiChoice.GetX());
+        int moveCount = HighlightValidMoves(fixedValidMoves);
+        if (moveCount < 1)
+        {
+            return false;
+        }
+        int pickedMove = (int) randMove.Next(fixedValidMoves.Count());
+        Piece aiMove = fixedValidMoves[pickedMove];
+        ExecuteMove(userIsWhite, aiChoice.GetY(), aiChoice.GetX(), aiMove.GetY(), aiMove.GetX());
+        PromotePawns(userIsWhite);
+        return true;
     }
 }
