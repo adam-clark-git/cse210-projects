@@ -3,7 +3,7 @@ class Pawn : Piece
     private bool _enPassantEnabled;
     public Pawn(int yPos, int xPos) : base(yPos, xPos)
     {
-        _points = 100;
+        _points = 1;
         _name = "pawn";
         _color = "white";
         _symbol = "P";
@@ -12,7 +12,7 @@ class Pawn : Piece
     }
     public Pawn(int yPos, int xPos, string color, bool hasMoved, bool enPassantStatus) : base(yPos, xPos)
     {
-        _points = 100;
+        _points = 1;
         _name = "pawn";
         _color = color;
         _symbol = "P";
